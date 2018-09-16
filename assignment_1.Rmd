@@ -1,0 +1,31 @@
+---
+title: "Assignment_1"
+author: "Xinyi Wang"
+date: "9/16/2018"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+#knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+opts_chunk$set(echo = TRUE)
+```
+
+##1.Calculate $p_k$. Since the number of misprints in one page follows a $Poisson(\lambda = 2)$  distribution, so that we can come out with a table p_k contains the probability of one single page with at lesat 0 to 10 misprints.
+```{r}
+p_k = c(ppois(q=0:10,lambda=2,lower.tail=FALSE))
+p_k
+```
+##2.Build a table with 51 rows(number of pages) and 11 columns(number of misprints). Next, since no more than $n$ pages with more than $k$ misprints follows a Binomial distribution, we calculate each element in table with pbinom($n$, 50, $p_k$).
+```{r}
+table = as.data.frame(matrix(nrow=51,ncol=11,dimnames=list(c(0:50),c(0:10))))
+for (i in 1:51) {
+  for (j in 1:11) {
+    table[i,j] = pbinom(q=i-1,size=50,prob=p_k[j])
+  }
+}
+table
+```
+![Book Image](https://rta.org.af/eng/wp-content/uploads/2016/02/book.png)
