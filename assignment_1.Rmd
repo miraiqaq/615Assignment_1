@@ -3,8 +3,10 @@ title: "Assignment_1"
 author: "Xinyi Wang"
 date: "9/16/2018"
 output:
-  word_document: default
   pdf_document: default
+  word_document: default
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
@@ -28,4 +30,11 @@ for (i in 1:51) {
 }
 table
 ```
-![Book Image](https://rta.org.af/eng/wp-content/uploads/2016/02/book.png)
+##3.Book Pic
+```{r}
+download.file(url = "https://rta.org.af/eng/wp-content/uploads/2016/02/book.png",
+          destfile = "book.png",
+          mode = 'wb')
+knitr::include_graphics(path = "book.png")
+```
+
