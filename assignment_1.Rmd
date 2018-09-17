@@ -4,14 +4,12 @@ author: "Xinyi Wang"
 date: "9/16/2018"
 output:
   pdf_document: default
-  word_document: default
-  html_document:
-    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
 #knitr::opts_chunk$set(echo = TRUE)
 library(knitr)
+library(kableExtra)
 opts_chunk$set(echo = TRUE)
 ```
 
@@ -28,8 +26,12 @@ for (i in 1:51) {
     table[i,j] = pbinom(q=i-1,size=50,prob=p_k[j])
   }
 }
-table
+# table
+my_table = kable(table)
+kable_styling(my_table, bootstrap_options = "striped", full_width = FALSE, position = "left",font_size = 7)
+
 ```
+
 ##3.Book Pic
 ```{r}
 download.file(url = "https://rta.org.af/eng/wp-content/uploads/2016/02/book.png",
